@@ -1,0 +1,72 @@
+{
+    "version": "1.2.0",
+    "min_app_version": "1.1.1",
+    "run_migrations": true,
+    "notes": "Version 1.2.0 introduces major enhancements including re-order functionality, single vendor mode, subscription system, deep linking, custom SMS integration, improved tracking and UI, along with performance improvements and bug fixes across all platforms.",
+    "run_seeders": true,
+    "vendor_update": false,
+    "actions": [
+        {
+            "type": "add",
+            "source": "app",
+            "target": "app"
+        },
+        {
+            "type": "add",
+            "source": "config",
+            "target": "config"
+        },
+        {
+            "type": "add",
+            "source": "bootstrap/app.php",
+            "target": "bootstrap/app.php"
+        },
+        {
+            "type": "add",
+            "source": "database",
+            "target": "database"
+        },
+        {
+            "type": "add",
+            "source": "packages",
+            "target": "packages"
+        },
+        {
+            "type": "add",
+            "source": "resources",
+            "target": "resources"
+        },
+        {
+            "type": "add",
+            "source": "routes",
+            "target": "routes"
+        },
+        {
+            "type": "add",
+            "source": "public/assets/admin",
+            "target": "public/assets/admin"
+        },
+        {
+            "type": "add",
+            "source": "public/assets/css",
+            "target": "public/assets/css"
+        },
+        {
+            "type": "add",
+            "source": "public/assets/js",
+            "target": "public/assets/js"
+        },
+        {
+            "type": "add",
+            "source": "public/assets/seller",
+            "target": "public/assets/seller"
+        }
+    ],
+    "commands": [
+        "config:clear",
+        "config:cache",
+        "route:clear",
+        "view:clear",
+        "view:cache"
+    ]
+}
