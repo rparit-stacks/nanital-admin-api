@@ -33,8 +33,9 @@ class EnvironmentController extends Controller
      */
     public function environment()
     {
-        // If license is not yet set, force user to the dedicated License step
-        if (!env('LICENSE_PURCHASE_CODE') || !env('LICENSE_SIGNATURE')) {
+        // Use config(), not env(): after `php artisan config:cache`, env() is null outside config files
+        // and the user gets stuck redirecting back to the license step.
+        if (!config('app.license_purchase') || !config('app.license_signature')) {
             return redirect()->route('LaravelInstaller::license');
         }
 
