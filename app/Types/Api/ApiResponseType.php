@@ -5,7 +5,9 @@ namespace App\Types\Api;
 
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
 
@@ -61,6 +63,14 @@ class ApiResponseType
             $data = null;
         }
 
+        // Ensure resources/collections are JSON-serializable
+        if ($data instanceof JsonResource) {
+            $data = $data->resolve(request());
+        } elseif ($data instanceof Collection) {
+            $data = $data->map(function ($item) {
+                return $item instanceof JsonResource ? $item->resolve(request()) : $item;
+            })->all();
+        }
 
         return response()->json(self::toArray(success: $success,message:  $message,data: $data), $status);
     }
