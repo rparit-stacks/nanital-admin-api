@@ -34,8 +34,14 @@ class NotificationSettingResource extends JsonResource
 
         $path = storage_path('app/private/settings/service-account-file.json');
 
-        $json = file_get_contents($path);
-        $jsonContent = json_decode($json, true);
+        $jsonContent = null;
+        if (file_exists($path)) {
+            $json = @file_get_contents($path);
+            if (is_string($json) && $json !== '') {
+                $decoded = json_decode($json, true);
+                $jsonContent = is_array($decoded) ? $decoded : null;
+            }
+        }
 
         // Only admin panel can access serviceAccountFile
 
