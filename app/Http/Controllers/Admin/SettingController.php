@@ -308,8 +308,8 @@ class SettingController extends Controller
                 }
             }
 
-            $authSetting = Setting::find('authentication');
-            $googleApiKey = data_get($authSetting?->value, 'googleApiKey');
+            $setting = Setting::find('authentication');
+            $googleApiKey = $setting->value['googleApiKey'] ?? null;
             return view('admin.settings.' . $variable, [
                 'settings' => $settings,
                 'googleApiKey' => $googleApiKey
